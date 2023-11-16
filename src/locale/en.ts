@@ -1,5 +1,9 @@
 export default {
   title: "NFC - Need for Closure Questionnaire",
+  results: "Results",
+  back: "Back",
+  score: "Score",
+  submit: "Submit",
   full: {
     "1a": "I think that having clear rules and order at work is essential for success.",
     "2e": "Even after I've made up my mind about something, I am always eager to consider a different opinion. R",
