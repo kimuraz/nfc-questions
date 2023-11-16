@@ -1,6 +1,7 @@
 export default {
   title: "NFC - Need for Closure Questionnaire",
   results: "Results",
+  resultsByQuestionType: "Results by question type",
   back: "Back",
   score: "Score",
   submit: "Submit",
@@ -46,6 +47,13 @@ export default {
     "39e": "I do not usually consult many different opinions before forming my own view.",
     "40b": "I dislike unpredictable situations.",
     "41a": "I dislike the routine aspects of my work (studies). R"
+  },
+  types: {
+    a: "Need for Order",
+    b: "Need for Predictability",
+    c: "Decisiveness",
+    d: "Avoidance of Ambiguity",
+    e: "Closed-mindedness",
   },
   short: [
     "I don't like situations that are uncertain.",

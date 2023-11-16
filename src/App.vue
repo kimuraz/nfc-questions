@@ -1,26 +1,26 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { FULL_QUESTIONNAIRE, Question  } from './constants/questions';
 import { useI18n } from 'vue-i18n';
 
-const { t, tm } = useI18n();
+import { Question  } from '../constants/questions';
+import FullQuestionnaire from './components/FullQuestionnaire.vue';
+import FullQuestionnaireChart from './components/FullQuestionnaireChart.vue';
+import { Ref } from 'vue';
 
-const fullQuestionnaire = ref(FULL_QUESTIONNAIRE.map((question: Question) => {
-  return {
-    ...question,
-    score: 0,
-  };
-}));
+const { t } = useI18n();
+const questionnaireType = ref('FULL');
+const fullQuestionnaire: Ref<Question[]|null> = ref(null);
 
-const fullQuestionnaireScore = computed(() => {
-  return fullQuestionnaire.value.reduce((acc, curr) => acc + curr.score, 0);
-});
 
 const toggleResults = ref(false);
-
-const submit = () => {
+const showFullResults = (questionnaire: Question[]) => {
+  fullQuestionnaire.value = questionnaire;
   toggleResults.value = true;
-}
+};
+
+const fullQuestionnaireScore = computed(() => {
+  return fullQuestionnaire.value?.reduce((acc: number, curr: Question) => acc + curr.score, 0) || 0;
+});
 </script>
 
 <template>
@@ -30,30 +30,32 @@ const submit = () => {
     </header>
 
     <main class="content">
-      <section v-for="q in fullQuestionnaire" class="questionnaire-section" v-show="!toggleResults">
-        <p>{{ t(q.text) }}</p>
-        <br/>
-        <el-radio-group v-model="q.score">
-          <el-radio v-for="(lb, idx) in tm('answersLabels')"  :label="idx + 1" size="large">{{ lb }}</el-radio>
-        </el-radio-group>
-      </section>
+      <FullQuestionnaire 
+        v-show="!toggleResults && questionnaireType === 'FULL'"
+        @fullQuestionnaire="showFullResults"
+      />
 
-      <section class="questionnaire-section" v-show="toggleResults">
-        <p>{{ t('results') }}</p>
+      <section class="questionnaire-section" v-if="toggleResults">
+        <h2>{{ t('results') }}</h2>
         <br/>
         <p>{{ t('score') }}: {{ fullQuestionnaireScore }}</p>
+
+        <p v-if="questionnaireType === 'FULL' && !!fullQuestionnaire">
+          <FullQuestionnaireChart :questionnaire="fullQuestionnaire" />
+        </p>
 
         <el-button type="primary" size="large" @click="toggleResults = false">{{ t('back') }}</el-button>
       </section>
      
-      <section class="questionnaire-section" v-show="!toggleResults">
-        <el-button type="primary" size="large" @click="submit">{{ t('submit') }}</el-button>
-      </section>
     </main>
     </div>
 </template>
 
 <style lang="scss">
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 .questionnaire-section {
   display: flex;
   flex-direction: column;
