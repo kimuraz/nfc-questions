@@ -56,6 +56,11 @@ const fullQuestionnaireScore = computed(() => {
   font-family: 'Roboto', sans-serif;
 }
 
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 .questionnaire-section {
   display: flex;
   flex-direction: column;
