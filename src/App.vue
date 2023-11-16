@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import { Question  } from '../constants/questions';
+import { Question  } from './constants/questions';
 import FullQuestionnaire from './components/FullQuestionnaire.vue';
 import FullQuestionnaireChart from './components/FullQuestionnaireChart.vue';
 import { Ref } from 'vue';
@@ -19,7 +19,7 @@ const showFullResults = (questionnaire: Question[]) => {
 };
 
 const fullQuestionnaireScore = computed(() => {
-  return fullQuestionnaire.value?.reduce((acc: number, curr: Question) => acc + curr.score, 0) || 0;
+  return fullQuestionnaire.value?.reduce((acc: number, curr: Question) => acc + (curr.score || 0), 0) || 0;
 });
 </script>
 

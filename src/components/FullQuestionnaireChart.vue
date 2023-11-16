@@ -21,15 +21,15 @@ const chartData = computed(() => {
   const labels = Object.values(tm('types'));
   const datasets = Object.keys(tm('types')).map((type: string, idx: number) => {
     return {
-      label: tm(`types.${type}`),
+      label: t(`types.${type}`),
       backgroundColor: CHART_COLORS[idx],
       data: labels.map((label: string) => {
-        if (label !== tm(`types.${type}`)) {
+        if (label !== t(`types.${type}`)) {
           return 0;
         }
         return fullQuestionnaire.value?.reduce((acc: number, curr: Question) => {
           if (curr.type === type) {
-            return acc + curr.score;
+            return acc + (curr.score || 0);
           }
           return acc;
         }, 0) || 0;
