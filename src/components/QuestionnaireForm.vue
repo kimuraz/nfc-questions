@@ -25,20 +25,21 @@ const submit = () => {
     <el-card v-for="(q, idx) in localQuestionnaire" class="questionnaire-section">
       <p>{{ idx + 1 }} - {{ t(q.text) }}</p>
       <br/>
-      <el-radio-group v-model="q.score">
-        <el-radio v-for="(lb, idx) in tm('answersLabels')"  :label="idx + 1" size="large">{{ lb }}</el-radio>
-      </el-radio-group>
+      <div class="radio-group-labels">
+        <el-radio-group v-model="q.score">
+          <el-radio v-for="(lb, idx) in tm('answersLabels')"  :label="idx + 1" size="large">{{ lb }}</el-radio>
+        </el-radio-group>
+      </div>
     </el-card>
     <section class="questionnaire-button-holder">
       <el-button type="primary" size="large" @click="submit">{{ t('submit') }}</el-button>
     </section>
 </template>
 
-<style>
+<style lang="scss">
 .questionnaire-section {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   height: 100%;
   margin-bottom: 20px;
   > p {
@@ -54,8 +55,14 @@ const submit = () => {
   }
 }
 
+.radio-group-labels {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
 @media screen and (min-width: 1280px) {
-  .questionnaire-section {
+  .radio-group-labels {
     flex-direction: row;
   }
 }

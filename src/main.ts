@@ -5,13 +5,14 @@ import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 
 import en from './locale/en.ts'
+import ptBR from './locale/ptBR.ts'
 
 const i18n = createI18n({
   locale: 'en',
   legacy: false,
   messages: {
     en,
-    ptBR: {},
+    ptBR,
   },
 });
 

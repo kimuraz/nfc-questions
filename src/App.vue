@@ -7,7 +7,7 @@ import FullQuestionnaire from './components/FullQuestionnaire.vue';
 import ShortQuestionnaire from './components/ShortQuestionnaire.vue';
 import Results from './components/Results.vue';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const questionnaireType = ref('FULL');
 const questionnaire: Ref<Question[] | ShortQuestion[]> = ref([]);
 
@@ -23,6 +23,12 @@ const showFullResults = (data: Question[] | ShortQuestion[]) => {
 <template>
   <div id="app">
     <header class="header">
+      <div style="margin-top: 20px">
+        <el-radio-group v-model="locale" size="small">
+          <el-radio-button label="en">English</el-radio-button>
+          <el-radio-button label="ptBR">Português</el-radio-button>
+        </el-radio-group>
+      </div>
       <h1>{{ t('title') }}</h1>
     </header>
 
@@ -69,7 +75,7 @@ const showFullResults = (data: Question[] | ShortQuestion[]) => {
 
 .content {
   margin: auto;
-  width: 90%;
+  width: 95%;
 }
 
 .intro {
@@ -80,13 +86,13 @@ const showFullResults = (data: Question[] | ShortQuestion[]) => {
 
 @media screen and (min-width: 1024px) {
   .content {
-    width: 80%;
+    width: 85%;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .content {
-    width: 50%;
+    width: 65%;
   }
 }
 </style>
