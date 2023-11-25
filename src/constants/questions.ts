@@ -5,6 +5,11 @@ export interface Question {
   score?: number;
 };
 
+export interface ShortQuestion {
+  text: string,
+  score: number,
+};
+
 export const FULL_QUESTIONNAIRE: Question[] = [
   { type: "a", text: "full.1a", order: 1 },
   { type: "e", text: "full.2e", order: 2 },
