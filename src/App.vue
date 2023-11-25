@@ -30,6 +30,8 @@ const fullQuestionnaireScore = computed(() => {
     </header>
 
     <main class="content">
+      
+
       <FullQuestionnaire 
         v-show="!toggleResults && questionnaireType === 'FULL'"
         @fullQuestionnaire="showFullResults"
@@ -61,14 +63,20 @@ const fullQuestionnaireScore = computed(() => {
   margin-bottom: 2rem;
 }
 
-.questionnaire-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  margin-bottom: 20px;
-  > p {
-    margin-bottom: 0;
+.content {
+  margin: auto;
+  width: 90%;
+}
+
+@media screen and (min-width: 1024px) {
+  .content {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .content {
+    width: 50%;
   }
 }
 </style>
