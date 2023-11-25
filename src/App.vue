@@ -1,26 +1,23 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, Ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { Question, ShortQuestion } from './constants/questions';
 
-import { Question  } from './constants/questions';
 import FullQuestionnaire from './components/FullQuestionnaire.vue';
-import FullQuestionnaireChart from './components/FullQuestionnaireChart.vue';
-import { Ref } from 'vue';
+import ShortQuestionnaire from './components/ShortQuestionnaire.vue';
+import Results from './components/Results.vue';
 
 const { t } = useI18n();
 const questionnaireType = ref('FULL');
-const fullQuestionnaire: Ref<Question[]|null> = ref(null);
+const questionnaire: Ref<Question[] | ShortQuestion[]> = ref([]);
 
 
 const toggleResults = ref(false);
-const showFullResults = (questionnaire: Question[]) => {
-  fullQuestionnaire.value = questionnaire;
+const showFullResults = (data: Question[] | ShortQuestion[]) => {
+  questionnaire.value = data;
   toggleResults.value = true;
 };
 
-const fullQuestionnaireScore = computed(() => {
-  return fullQuestionnaire.value?.reduce((acc: number, curr: Question) => acc + (curr.score || 0), 0) || 0;
-});
 </script>
 
 <template>
@@ -30,6 +27,17 @@ const fullQuestionnaireScore = computed(() => {
     </header>
 
     <main class="content">
+      <section class="intro">
+        <p>
+          {{ t('about.intro') }}
+        </p>
+        <br/>
+
+        <el-radio-group v-model="questionnaireType" v-if="!toggleResults">
+          <el-radio-button label="FULL">{{ t('questionnaireType.full') }}</el-radio-button>
+          <el-radio-button label="SHORT">{{ t('questionnaireType.short') }}</el-radio-button>
+        </el-radio-group>
+      </section>
       
 
       <FullQuestionnaire 
@@ -37,16 +45,13 @@ const fullQuestionnaireScore = computed(() => {
         @fullQuestionnaire="showFullResults"
       />
 
-      <section class="questionnaire-section" v-if="toggleResults">
-        <h2>{{ t('results') }}</h2>
-        <br/>
-        <p>{{ t('score') }}: {{ fullQuestionnaireScore }}</p>
+      <ShortQuestionnaire 
+        v-show="!toggleResults && questionnaireType === 'SHORT'"
+        @shortQuestionnaire="showFullResults"
+      />
 
-        <p v-if="questionnaireType === 'FULL' && !!fullQuestionnaire">
-          <FullQuestionnaireChart :questionnaire="fullQuestionnaire" />
-        </p>
-
-        <el-button type="primary" size="large" @click="toggleResults = false">{{ t('back') }}</el-button>
+      <section v-if="toggleResults">
+        <Results :questionnaire="questionnaire" :questionnaireType="questionnaireType" @back="toggleResults = false"/>
       </section>
      
     </main>
@@ -60,12 +65,17 @@ const fullQuestionnaireScore = computed(() => {
 
 .header {
   text-align: center;
-  margin-bottom: 2rem;
 }
 
 .content {
   margin: auto;
   width: 90%;
+}
+
+.intro {
+  width: 100%;
+  text-align: center;
+  margin: 2rem 0;
 }
 
 @media screen and (min-width: 1024px) {

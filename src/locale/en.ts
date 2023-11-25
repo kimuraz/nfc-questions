@@ -5,6 +5,22 @@ export default {
   back: "Back",
   score: "Score",
   submit: "Submit",
+  questionnaireType: {
+    full: "Full Questionnaire",
+    short: "Short Questionnaire",
+  },
+  about: {
+    intro: "The Need for Closure Scale (NFCS) is a 42-item questionnaire designed to measure the need for cognitive closure. The scale was developed by Arie Kruglanski and Donna Webster in 1994.",
+    link: [
+      { title: "Arie W. Kruglanski website", link: "https://www.kruglanskiarie.com/need-for-closure" },
+      { title: "PDF for the full questionnaire", link: "https://www.kruglanskiarie.com/_files/ugd/1b977d_8ef6f17f4f814d9683acd822ecc9062e.pdf" },
+      { title: "PDF for the short questionnaire", link: "https://www.kruglanskiarie.com/_files/ugd/1b977d_efa0f5d5b2094ce18763eb0cfffd345f.pdf" },
+    ],
+  },
+  resultsText: {
+    full: "Your need for closure score is {score} out of 246. Scores up to 82 mean low NFC and between 205-246 mean high NFC.",
+    short: "Your need for closure score is {score} out of 90. Scores up to 30 mean low NFC and between 75-90 mean high NFC.",
+  },
   full: {
     "1a": "I think that having clear rules and order at work is essential for success.",
     "2e": "Even after I've made up my mind about something, I am always eager to consider a different opinion. R",
