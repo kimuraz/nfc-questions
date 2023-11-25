@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { defineEmits, defineProps, Ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { Question, ShortQuestion  } from '../constants/questions';
+import { Questionnaire } from '../constants/questions';
 import { toRef } from 'vue';
 
 interface Props {
-  questionnaire: Question[] | ShortQuestion[];
+  questionnaire: Questionnaire;
 }
 
 const { t, tm } = useI18n();

@@ -3,10 +3,10 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import FullQuestionnaireChart from './FullQuestionnaireChart.vue';
 
-import { Question, ShortQuestion  } from './constants/questions';
+import { Question, ShortQuestion, Questionnaire  } from '../constants/questions';
 
 interface Props {
-  questionnaire: Question[] | ShortQuestion[];
+  questionnaire: Questionnaire;
   questionnaireType: 'FULL' | 'SHORT';
 }
 const props = defineProps<Props>();
@@ -16,7 +16,7 @@ const { t } = useI18n();
 const emit = defineEmits(['back']);
 
 const questionnaireScore = computed(() => {
-  return props.questionnaire.reduce((acc: number, curr: Question) => acc + (curr.score || 0), 0) || 0;
+  return props.questionnaire.reduce((acc: number, curr: (Question | ShortQuestion)) => acc + (curr.score || 0), 0) || 0;
 });
 
 const percentageScore = computed(() => {
@@ -37,12 +37,12 @@ const percentageScore = computed(() => {
     <el-progress :percentage="percentageScore"/>
 
     <p v-if="props.questionnaireType === 'FULL'">
-      <FullQuestionnaireChart :questionnaire="props.questionnaire" />
+      <FullQuestionnaireChart :questionnaire="props.questionnaire as Question[]" />
     </p>
 
     <br/>
     
-    <el-button class="back-button" type="secondary" size="large" @click="emit('back')">{{ t('back') }}</el-button>
+    <el-button class="back-button" type="" size="large" @click="emit('back')">{{ t('back') }}</el-button>
   </section>
 </template>
 

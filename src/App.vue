@@ -8,7 +8,7 @@ import ShortQuestionnaire from './components/ShortQuestionnaire.vue';
 import Results from './components/Results.vue';
 
 const { t, locale } = useI18n();
-const questionnaireType = ref('FULL');
+const questionnaireType: Ref<'FULL'|'SHORT'> = ref('FULL');
 const questionnaire: Ref<Question[] | ShortQuestion[]> = ref([]);
 
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref, defineEmits } from 'vue';
+import { ref, defineEmits, Ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { ShortQuestion  } from '../constants/questions';
+import { ShortQuestion } from '../constants/questions';
 import QuestionnaireForm from './QuestionnaireForm.vue';
 
 const { tm } = useI18n();
-const shortQuestionnaire: ShortQuestion = ref(tm('short').map((questionStr: string) => ({
+const shortQuestionnaire: Ref<ShortQuestion[]> = ref((tm('short') as string[]).map((questionStr: string) => ({
     text: questionStr,
     score: 0,
 })));
