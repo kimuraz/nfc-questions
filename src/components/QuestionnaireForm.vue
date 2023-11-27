@@ -19,6 +19,14 @@ const emit = defineEmits(['filledQuestionnaire']);
 const submit = () => {
   emit('filledQuestionnaire', props.questionnaire);
 }
+
+const getLabel = (idx: number, text: string) => {
+  if (t(text).endsWith('R')) {
+    const label = Object.values(tm('answersLabels')).length - idx;
+    return label;
+  }
+  return idx + 1;
+}
 </script>
 
 <template>
@@ -27,7 +35,13 @@ const submit = () => {
       <br/>
       <div class="radio-group-labels">
         <el-radio-group v-model="q.score">
-          <el-radio v-for="(lb, idx) in tm('answersLabels')"  :label="idx + 1" size="large">{{ lb }}</el-radio>
+          <el-radio
+            v-for="(lb, idxAnswers) in tm('answersLabels')" 
+            :label="getLabel(idxAnswers, q.text)"
+            size="large"
+          >
+            {{ lb }}
+          </el-radio>
         </el-radio-group>
       </div>
     </el-card>
