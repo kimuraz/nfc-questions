@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, Ref } from 'vue';
+import { ref, Ref, computed, ComputedRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Question, ShortQuestion } from './constants/questions';
 
@@ -18,12 +18,17 @@ const showFullResults = (data: Question[] | ShortQuestion[]) => {
   toggleResults.value = true;
 };
 
+const externalLinks: ComputedRef<{ link: string, title: string }[]> = computed(() => {
+  return Object.values(tm('about.links'));
+});
+
 </script>
 
 <template>
   <div id="app">
     <header class="header">
       <div style="margin-top: 20px">
+        <!-- @vue-ignore --> 
         <el-radio-group v-model="locale" size="small">
           <el-radio-button label="en">English</el-radio-button>
           <el-radio-button label="ptBR">Português</el-radio-button>
@@ -40,7 +45,7 @@ const showFullResults = (data: Question[] | ShortQuestion[]) => {
         <br/>
 
         <div class="links">
-          <small v-for="(l, idx) in tm('about.links')" :key="idx">
+          <small v-for="(l, idx) in externalLinks" :key="idx">
             <a :href="l.link" target="_blank">{{ l.title }}</a>
           </small>
         </div>

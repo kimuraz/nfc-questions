@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineEmits, Ref, watch } from 'vue';
+import { ref, Ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { ShortQuestion } from '../constants/questions';
 import QuestionnaireForm from './QuestionnaireForm.vue';

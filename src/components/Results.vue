@@ -3,10 +3,10 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import FullQuestionnaireChart from './FullQuestionnaireChart.vue';
 
-import { Question, ShortQuestion, Questionnaire  } from '../constants/questions';
+import { Question, ShortQuestion, QuestionnaireItem  } from '../constants/questions';
 
 interface Props {
-  questionnaire: Questionnaire;
+  questionnaire: QuestionnaireItem[];
   questionnaireType: 'FULL' | 'SHORT';
 }
 const props = defineProps<Props>();
@@ -16,11 +16,13 @@ const { t } = useI18n();
 const emit = defineEmits(['back']);
 
 const questionnaireScore = computed(() => {
-  return props.questionnaire.reduce((acc: number, curr: (Question | ShortQuestion)) => acc + (curr.score || 0), 0) || 0;
+  return props.questionnaire.reduce(
+    (acc: number, curr: (Question | ShortQuestion)) => acc + (curr.score || 0), 0
+    ) || 0;
 });
 
 const percentageScore = computed(() => {
-  return ((questionnaireScore.value / (props.questionnaire.length * 6)) * 100).toFixed(0);
+  return Math.round((questionnaireScore.value / (props.questionnaire.length * 6)) * 100);
 });
 </script>
 

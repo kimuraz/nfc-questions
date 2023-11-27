@@ -10,7 +10,7 @@ export interface ShortQuestion {
   score: number,
 };
 
-export type Questionnaire = Question[] | ShortQuestion[];
+export type QuestionnaireItem = Question|ShortQuestion;
 
 export const FULL_QUESTIONNAIRE: Question[] = [
   { type: "a", text: "full.1a", order: 1 },

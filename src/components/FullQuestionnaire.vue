@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineEmits } from 'vue';
+import { ref } from 'vue';
 import { FULL_QUESTIONNAIRE, Question  } from '../constants/questions';
 import QuestionnaireForm from './QuestionnaireForm.vue';
 

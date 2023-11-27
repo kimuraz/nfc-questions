@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Bar } from 'vue-chartjs';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
-import { ref, computed, defineProps } from 'vue';
+import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Question } from '../constants/questions';
 import { CHART_COLORS } from '../constants/colors';

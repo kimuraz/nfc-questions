@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { defineEmits, defineProps, Ref } from 'vue';
+import { Ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { Questionnaire } from '../constants/questions';
+import { QuestionnaireItem } from '../constants/questions';
 import { toRef } from 'vue';
 
 interface Props {
-  questionnaire: Questionnaire;
+  questionnaire: QuestionnaireItem[];
 }
 
 const { t, tm } = useI18n();
@@ -32,8 +32,7 @@ const getLabel = (idx: number, text: string) => {
 <template>
     <el-card v-for="(q, idx) in localQuestionnaire" class="questionnaire-section">
       <p>{{ idx + 1 }} - {{ t(q.text) }}</p>
-      <br/>
-      <div class="radio-group-labels">
+      <br/>      <div class="radio-group-labels">
         <el-radio-group v-model="q.score">
           <el-radio
             v-for="(lb, idxAnswers) in tm('answersLabels')" 
