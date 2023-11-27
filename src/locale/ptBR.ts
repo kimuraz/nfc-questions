@@ -11,7 +11,7 @@ export default {
   },
   about: {
     intro: "A Escala de Necessidade de Fechamento (NFCS) é um questionário de 42 itens projetado para medir a necessidade de fechamento cognitivo. A escala foi desenvolvida por Arie Kruglanski e Donna Webster em 1994.",
-    link: [
+    links: [
       { title: "Site de Arie W. Kruglanski", link: "https://www.kruglanskiarie.com/need-for-closure" },
       { title: "PDF do questionário completo", link: "https://www.kruglanskiarie.com/_files/ugd/1b977d_8ef6f17f4f814d9683acd822ecc9062e.pdf" },
       { title: "PDF do questionário resumido", link: "https://www.kruglanskiarie.com/_files/ugd/1b977d_efa0f5d5b2094ce18763eb0cfffd345f.pdf" },

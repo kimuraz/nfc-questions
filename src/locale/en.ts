@@ -11,7 +11,7 @@ export default {
   },
   about: {
     intro: "The Need for Closure Scale (NFCS) is a 42-item questionnaire designed to measure the need for cognitive closure. The scale was developed by Arie Kruglanski and Donna Webster in 1994.",
-    link: [
+    links: [
       { title: "Arie W. Kruglanski website", link: "https://www.kruglanskiarie.com/need-for-closure" },
       { title: "PDF for the full questionnaire", link: "https://www.kruglanskiarie.com/_files/ugd/1b977d_8ef6f17f4f814d9683acd822ecc9062e.pdf" },
       { title: "PDF for the short questionnaire", link: "https://www.kruglanskiarie.com/_files/ugd/1b977d_efa0f5d5b2094ce18763eb0cfffd345f.pdf" },

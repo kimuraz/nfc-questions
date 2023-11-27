@@ -7,7 +7,7 @@ import FullQuestionnaire from './components/FullQuestionnaire.vue';
 import ShortQuestionnaire from './components/ShortQuestionnaire.vue';
 import Results from './components/Results.vue';
 
-const { t, locale } = useI18n();
+const { t, tm, locale } = useI18n();
 const questionnaireType: Ref<'FULL'|'SHORT'> = ref('FULL');
 const questionnaire: Ref<Question[] | ShortQuestion[]> = ref([]);
 
@@ -37,6 +37,14 @@ const showFullResults = (data: Question[] | ShortQuestion[]) => {
         <p>
           {{ t('about.intro') }}
         </p>
+        <br/>
+
+        <div class="links">
+          <small v-for="(l, idx) in tm('about.links')" :key="idx">
+            <a :href="l.link" target="_blank">{{ l.title }}</a>
+          </small>
+        </div>
+
         <br/>
 
         <el-radio-group v-model="questionnaireType" v-if="!toggleResults">
@@ -82,6 +90,13 @@ const showFullResults = (data: Question[] | ShortQuestion[]) => {
   width: 100%;
   text-align: center;
   margin: 2rem 0;
+}
+
+.links {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
 }
 
 @media screen and (min-width: 1024px) {
